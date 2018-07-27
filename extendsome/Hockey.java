@@ -1,4 +1,5 @@
-// 文件名: Hockey.java
+package extendsome;
+
 public interface Hockey extends Sports
 {
    public void homeGoalScored();

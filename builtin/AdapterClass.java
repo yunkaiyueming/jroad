@@ -1,22 +1,24 @@
+package builtin;
+
 public class AdapterClass {
     public static void main(String[] args) {
-      show(new Cat());  // 以 Cat 对象调用 show 方法
-      show(new Dog());  // 以 Dog 对象调用 show 方法
+      show(new Cat());  // 毛
+      show(new Dog());  // 浠� Dog 瀵硅薄璋冪敤 show 鏂规硶
                 
-      Animal a = new Cat();  // 向上转型  
-      a.eat();               // 调用的是 Cat 的 eat
+      Animal a = new Cat();  // 鍚戜笂杞瀷  
+      a.eat();               // 璋冪敤鐨勬槸 Cat 鐨� eat
       
-      Cat c = (Cat)a;        // 向下转型  
-      c.work();        // 调用的是 Cat 的 work
+      Cat c = (Cat)a;        // 鍚戜笅杞瀷  
+      c.work();        // 璋冪敤鐨勬槸 Cat 鐨� work
   }  
             
     public static void show(Animal a)  {
       a.eat();  
-        // 类型判断
-        if (a instanceof Cat)  {  // 猫做的事情 
+        // 绫诲瀷鍒ゆ柇
+        if (a instanceof Cat)  {  // 鐚仛鐨勪簨鎯� 
             Cat c = (Cat)a;  
             c.work();  
-        } else if (a instanceof Dog) { // 狗做的事情 
+        } else if (a instanceof Dog) { // 鐙楀仛鐨勪簨鎯� 
             Dog c = (Dog)a;  
             c.work();  
         }  
@@ -29,18 +31,18 @@ abstract class Animal {
   
 class Cat extends Animal {  
     public void eat() {  
-        System.out.println("吃鱼");  
+        System.out.println("鍚冮奔");  
     }  
     public void work() {  
-        System.out.println("抓老鼠");  
+        System.out.println("鎶撹�侀紶");  
     }  
 }  
   
 class Dog extends Animal {  
     public void eat() {  
-        System.out.println("吃骨头");  
+        System.out.println("鍚冮澶�");  
     }  
     public void work() {  
-        System.out.println("看家");  
+        System.out.println("鐪嬪");  
     }  
 }

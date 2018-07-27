@@ -1,4 +1,6 @@
-// 文件名: Football.java
+package extendsome;
+
+//文件名: Football.java
 public interface Football extends Sports
 {
    public void homeTeamScored(int points);

@@ -1,3 +1,4 @@
+package builtin;
 // 使用 BufferedReader 在控制台读取字符
  
 import java.io.*;

@@ -1,4 +1,4 @@
-package jroad.db;
+package db;
 
 import java.sql.*;
 

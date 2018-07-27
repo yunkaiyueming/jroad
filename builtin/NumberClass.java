@@ -1,3 +1,5 @@
+package builtin;
+
 public class NumberClass{
 
 	public void useNumer(){
