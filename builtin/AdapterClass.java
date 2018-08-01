@@ -2,14 +2,14 @@ package builtin;
 
 public class AdapterClass {
     public static void main(String[] args) {
-      show(new Cat());  // 毛
-      show(new Dog());  // 浠� Dog 瀵硅薄璋冪敤 show 鏂规硶
+      show(new Cat());  // 猫
+      show(new Dog());  // 狗
                 
-      Animal a = new Cat();  // 鍚戜笂杞瀷  
-      a.eat();               // 璋冪敤鐨勬槸 Cat 鐨� eat
+      Animal a = new Cat();  // 猫
+      a.eat();               // 猫吃鱼
       
-      Cat c = (Cat)a;        // 鍚戜笅杞瀷  
-      c.work();        // 璋冪敤鐨勬槸 Cat 鐨� work
+      Cat c = (Cat)a;        // 猫
+      c.work();        // 
   }  
             
     public static void show(Animal a)  {
@@ -31,18 +31,18 @@ abstract class Animal {
   
 class Cat extends Animal {  
     public void eat() {  
-        System.out.println("鍚冮奔");  
+        System.out.println("吃鱼");  
     }  
     public void work() {  
-        System.out.println("鎶撹�侀紶");  
+        System.out.println("捉老鼠");  
     }  
 }  
   
 class Dog extends Animal {  
     public void eat() {  
-        System.out.println("鍚冮澶�");  
+        System.out.println("吃骨头");  
     }  
     public void work() {  
-        System.out.println("鐪嬪");  
+        System.out.println("看门");  
     }  
 }
