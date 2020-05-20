@@ -68,7 +68,7 @@ public class ThreadPoolDemo {
     }
 
     //newSingleThreadExecutor 单一示例 只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行
-    public static void main(String[] args) {
+    public static void main9(String[] args) {
         ConcurrentHashMap mapData = new ConcurrentHashMap();
         Map<String,String> mapData2 = new ConcurrentHashMap<String, String>();
         mapData2.put("school", "middle_school");
@@ -116,4 +116,45 @@ public class ThreadPoolDemo {
         singleThreadExecutor.shutdown();
     }
 
+    //newFixedThreadPool 固定线程池 继承线程类的方式 实现
+    public static void main10(String[] args) {
+        class Task extends Thread{//继承现成类
+            public void run(){
+                System.out.println(Thread.currentThread().getName());
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        Thread t1 = new Task();
+        ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(4);
+        for (int i = 0; i < 10; ++i) {
+            newFixedThreadPool.execute(t1);
+        }
+    }
+
+    //使用线程池 获取线程返回结果
+    public static void main(String[] args) {
+        class MyCallable implements Callable<String> {
+            @Override
+            public String call() throws Exception {
+                System.out.println("线程执行......");
+                Thread.sleep(3000);
+                System.out.println("线程执行完毕......");
+                return "hello world!!!";
+            }
+        }
+
+        //使用Callable接口和FutureTask
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<String> fut = executorService.submit(new MyCallable()); //使用submit提交数据
+        executorService.shutdown();
+        try{
+            System.out.println("我拿到线程返回结果了:"+fut.get());
+        }catch (Exception e){}
+
+    }
 }
