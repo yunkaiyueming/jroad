@@ -35,9 +35,16 @@ class AThread extends Thread {
     }
 }
 
-//调用join方法 即等待 join的调用线程执行完成
+class MyRunable implements Runnable{
+    @Override
+    public void run() {
+        System.out.println("start new thread with MyRunable!");
+    }
+}
+
 public class ThreadDemo {
-    public static void main(String[] args) {
+    //调用join方法 即等待 join的调用线程执行完成
+    public static void main1(String[] args) {
         String threadName = Thread.currentThread().getName();
         System.out.println(threadName + " start.");
         BThread bt = new BThread();
@@ -51,6 +58,38 @@ public class ThreadDemo {
             System.out.println("Exception from main");
         }
         System.out.println(threadName + " end!");
+    }
+
+    //启动1个线程的多种写法
+//    New：新创建的线程，尚未执行；
+//    Runnable：运行中的线程，正在执行run()方法的Java代码；
+//    Blocked：运行中的线程，因为某些操作被阻塞而挂起；
+//    Waiting：运行中的线程，因为某些操作在等待中；
+//    Timed Waiting：运行中的线程，因为执行sleep()方法正在计时等待；
+//    Terminated：线程已终止，因为run()方法执行完毕。
+
+    public static void main(String[] args) throws InterruptedException {
+        Thread t1 = new BThread();//启动1个线程，调用start方法 即可执行thread中的run方法
+        t1.start();
+
+        Thread t2 = new Thread(new MyRunable()); //实现Runnable接口,调用start执行方法run
+        t2.start();
+
+        //使用lambda语法
+        Thread t3 = new Thread(() -> {
+            System.out.println("start new thread in lambdas");
+        });
+        t3.start();
+
+        //匿名Runable接口
+        Thread t4 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("start new thread in no name runable");
+            }
+        });
+        t4.run();
+        System.out.println("main end");
     }
 
 }
