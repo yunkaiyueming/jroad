@@ -73,11 +73,15 @@ public class DateClass{
 		int second = c1.get(Calendar.SECOND);
 		// 获得星期几（注意（这个与Date类是不同的）：1代表星期日、2代表星期1、3代表星期二，以此类推）
 		int day = c1.get(Calendar.DAY_OF_WEEK);
+
+		System.out.println(year+month+" "+date+" "+hour+minute+second);
 	}
 
 	public static void main(String[] args){
 		DateClass dc = new DateClass();
 		dc.getDate();
+
+		dc.getCander();
 	}
 
 }

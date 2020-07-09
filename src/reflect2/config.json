@@ -1,0 +1,12 @@
+{
+  "objects": [
+    {
+      "id": "id1",
+      "class": "reflect2.User"
+    },
+    {
+      "id": "id2",
+      "class": "reflect2.Bean"
+    }
+  ]
+}
