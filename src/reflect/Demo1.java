@@ -216,7 +216,7 @@ public class Demo1 {
 	{
 		Class<?> class1 = null;
 		class1 = Class.forName("reflect.SuperMan");
-		
+
 		System.out.println("Demo7: \n调用无参方法fly()：");
 		Method method = class1.getMethod("fly");
 		method.invoke(class1.newInstance());

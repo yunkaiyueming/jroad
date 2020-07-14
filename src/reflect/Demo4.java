@@ -6,7 +6,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * @author w
+ 反射就是把Java类中的各种成分映射成相应的java类。例如，一个Java类中用一个Class类的对象来表示，一个类中的组成部分：成员变量，方法，构造方法，包等等信息也用一个个的Java类来表示，就像汽车是一个类，汽车中的发动机，变速箱等等也是一个个的类。
+ 表示Java类的Class类显示要提供一系列的方法，来获得其中的变量，方法，构造方法，修饰符，包等信息，这些信息就是用相应类的实例对象来表示，它们是Field、Method、Contructor、Package等等。
+ ————————————————
  */
 public class Demo4 {
 
