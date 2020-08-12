@@ -1,0 +1,13 @@
+demo
+Spring应用Spring容器的作用；Spring的AOP和IOC；Spring托管Mybatis事务；
+SpringMVC的应用SpringMVC中的控制器注解、请求注解、参数注解、响应注解等；
+SpringMVC中的静态资源处理；
+SpringMVC的容器。Spring+SpringMVC+Mybatis整合SSM的整合使用；
+Spring容器和SpringMVC容器Redis+Mysql的查询优化设计Redis的安装与连接；
+Redis常用命令及各命令使用场景；
+Redis存储机制；
+Redis的持久化机制。
+任务处理相关
+HttpClient模拟请求Quartz定时任务
+常用工具Excel&World导入导出短信&邮件发送
+

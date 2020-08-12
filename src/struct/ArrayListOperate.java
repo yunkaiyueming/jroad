@@ -3,6 +3,7 @@ package struct;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ArrayListOperate {
 
 	public static void main(String[] args) {
