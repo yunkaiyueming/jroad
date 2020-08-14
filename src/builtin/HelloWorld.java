@@ -18,6 +18,9 @@ public class HelloWorld {
 	// DEPARTMENT是一个常量 在 Java 中使用 final 关键字来修饰常量
     public static final String DEPARTMENT = "开发人员";
 
+    boolean isOk = false;
+    boolean isFlag = true;
+
     public void testSomeThing(){
     	int i =0;  // 局部变量
     	i+=5;

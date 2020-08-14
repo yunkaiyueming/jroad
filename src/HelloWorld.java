@@ -18,7 +18,10 @@ public class HelloWorld {
     private static double salary;
 
     // DEPARTMENT是一个常量 在 Java 中使用 final 关键字来修饰常量
+    // 常量的语法格式和变量类型，只需要在变量的语法格式前面添加关键字final即可。在Java编码规范中，要求常量名必须大写
     public static final String DEPARTMENT = "开发人员";
+    static final String JICSDFDS = "xfdafa"; //静态常量
+    final String HELLO = "helosf";//常量
 
     public void testSomeThing(){
         int i =0;  // 局部变量
@@ -62,5 +65,12 @@ public class HelloWorld {
         if(hw instanceof HelloWorld){
             System.out.println("hw是HelloWorld的实例");
         }
+
+        final String STW = "fdsfdsaf";
+
+        System.out.println(JICSDFDS);
+        System.out.println(DEPARTMENT);
+        System.out.println(hw.HELLO);
+        System.out.println(STW);
     }
 }

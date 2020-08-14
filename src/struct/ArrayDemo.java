@@ -1,5 +1,7 @@
 package struct;
 
+import com.google.common.collect.ImmutableList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,6 +27,17 @@ public class ArrayDemo {
         arr4 = new int[]{1,3,4,5};
     }
 
+    public static void main(String... args) {
+        String[] strs = {"Hollis", "公众号：Hollis", "博客：www.hollischuang.com"};
+        for (String s : strs) {
+            System.out.println(s);
+        }
+        List<String> strList = ImmutableList.of("Hollis", "公众号：Hollis", "博客：www.hollischuang.com");
+        for (String s : strList) {
+            System.out.println(s);
+        }
+    }
+
     public static void main2(String[] args){
         String[] strArray = new String[2];
         strArray[0] = "aa";
@@ -43,7 +56,7 @@ public class ArrayDemo {
         System.out.println(list);
     }
 
-    public static void main(String[] args){
+    public static void main4(String[] args){
         String[] strArray = new String[2];
         ArrayList< String> arrayList = new ArrayList<String>(strArray.length);
         Collections.addAll(arrayList, strArray);

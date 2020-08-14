@@ -11,3 +11,30 @@ Redis的持久化机制。
 HttpClient模拟请求Quartz定时任务
 常用工具Excel&World导入导出短信&邮件发送
 
+
+ava中的关键字一共包含48个，分别是：
+abstract 抽象类
+assert 断言
+boolean、
+break、byte、case、catch、char、class、continue、
+
+default、
+do、double、else、enum、extends、final、finally、float、for、implements、import、int、interface、
+instanceof、long、
+native、
+new、package、private、protected、public、return、short、static、
+strictfp、super、switch、synchronized、this、throw、throws、transient、try、void、
+volatile、while
+
+
+注解常见的作用有以下几种：
+生成帮助文档。这是最常见的，也是 Java 最早提供的注解。常用的有 @see、@param 和 @return 等；
+跟踪代码依赖性，实现替代配置文件功能。比较常见的是 Spring 2.5 开始的基于注解配置。作用就是减少配置。现在的框架基本都使用了这种配置来减少配置文件的数量；
+在编译时进行格式检查。如把 @Override 注解放在方法前，如果这个方法并不是重写了父类方法，则编译时就能检查出。
+
+基本注解包括：@Override、@Deprecated、@SuppressWarnings、@SafeVarargs 和 @FunctionalInterface。后面我们会逐一介绍。
+
+@Documented 标记该类可以在生成的javadoc中
+@Target 注解用来指定一个注解的使用范围
+@Retentio 于描述注解的生命周期，也就是该注解被保留的时间长短
+@Inherited 标记该类的注解可以继承
