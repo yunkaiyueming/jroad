@@ -12,7 +12,7 @@ public class RouteManage {
 //        routeMap.put("user");
 //    }
 
-    void addRoute(String name, Service server){
-        routeMap.put(name, server);
-    }
+//    void addRoute(String name, Service server){
+//        routeMap.put(name, server);
+//    }
 }
