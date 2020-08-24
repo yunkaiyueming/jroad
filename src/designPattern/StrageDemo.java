@@ -1,7 +1,5 @@
 package designPattern;
 
-
-
 interface fight{
     void exec();
 }
