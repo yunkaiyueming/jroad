@@ -7,6 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jarLib" level="project" />
+    <orderEntry type="library" name="testSub" level="project" />
+    <orderEntry type="library" name="spring-webmvc-5.2.3.RELEASE" level="project" />
   </component>
 </module>
