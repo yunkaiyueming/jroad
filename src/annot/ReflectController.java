@@ -12,29 +12,31 @@ import java.lang.reflect.Method;
 /**
  * 这是自定义注解的类
  */
-@Target({ ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @interface MyRequestMapping {
     String say(); // 这是注解的一个属性字段，也就是在使用注解时填写在括号里的参数
+
     String route();
 }
 
 //自定义的注解类
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD) //次注解只能作用于方法上
+@Target(ElementType.METHOD)
+        //次注解只能作用于方法上
 @interface MethodAnnotation {
     String desc() default "method1";
 }
 
 @MyRequestMapping(route = "/test", say = "/some")
- class TestController {
+class TestController {
     public void get() {
         System.out.println("进入get方法");
     }
 
-    @MethodAnnotation(desc="methodget")
+    @MethodAnnotation(desc = "methodget")
     public void post() {
         System.out.println("进入post方法");
     }
@@ -49,8 +51,8 @@ public class ReflectController {
 
         System.out.println(MyRequestMapping.class.getName());
         Method[] all = MyRequestMapping.class.getMethods();
-        for(Method a :all){
-            System.out.println("meth==>"+a.getName());
+        for (Method a : all) {
+            System.out.println("meth==>" + a.getName());
         }
 
 

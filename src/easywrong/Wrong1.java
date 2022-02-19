@@ -1,6 +1,6 @@
 package easywrong;
 
-//支付对象 比较 字符内容是否相同时，使用equals
+//字符串对象 比较 字符内容是否相同时，使用equals
 
 ///对于非字符串变量来说，"=="和"equals"方法的作用是相同的都是用来比较其 对象在堆内存的首地址，即用来比较两个引用变量是否指向同一个对象。
 
@@ -16,35 +16,27 @@ package easywrong;
 //原文链接：https://blog.csdn.net/zhu_apollo/java/article/details/1896391
 
 public class Wrong1 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         String a = new String("a");
         String a2 = "a";
         String b2 = "a";
-        if(a == a2)//
+        if (a == a2)//
         {
             System.out.println("a == a2 return true.");
-        }
-        else
-        {
+        } else {
             System.out.println("a == a2 return false.");
         }
 
-        if(b2 == a2)
-        {
+        if (b2 == a2) {
             System.out.println("b2 == a2 return true.");
-        }
-        else
-        {
+        } else {
             System.out.println("b2 == a2 return false.");
         }
 
-        if(a.equals(a2))//两个字符串在比较内容是否相等的时候一定要使用“equals”方法
+        if (a.equals(a2))//两个字符串在比较内容是否相等的时候一定要使用“equals”方法
         {
             System.out.println("a.equals(a2) return true.");
-        }
-        else
-        {
+        } else {
             System.out.println("a.equals(a2) return false.");
         }
     }

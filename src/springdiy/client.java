@@ -13,7 +13,7 @@ public class client {
         //通过工厂直接获取
         UserService userService = (UserService) factory.getBean("userService");
         //其实User也可以从工厂中获得
-        User u=(User)factory.getBean("user");
+        User u = (User) factory.getBean("user");
         //User u = new User();
         u.setUserName("yyb");
         u.setPassword("1234");

@@ -8,7 +8,7 @@ interface IPrint {
     String printObject();
 }
 
- class UserBean implements IPrint{
+class UserBean implements IPrint {
     @Override
     public String printObject() {
         // TODO Auto-generated method stub
@@ -17,7 +17,7 @@ interface IPrint {
     }
 }
 
- class MyBean implements IPrint{
+class MyBean implements IPrint {
 
     @Override
     public String printObject() {
@@ -48,12 +48,12 @@ public class Demo1 {
         String idName = "userBean";
 
         Class abCal = Class.forName(className); //获得了Class类，可以用这个类得到各种对象信息
-        IPrint obj = (IPrint)abCal.newInstance();
+        IPrint obj = (IPrint) abCal.newInstance();
         obj.printObject();
 
         className = "ioc.MyBean";
         abCal = Class.forName(className);
-        obj = (IPrint)abCal.newInstance();
+        obj = (IPrint) abCal.newInstance();
         obj.printObject();
     }
 

@@ -1,7 +1,7 @@
 package thread;
 
 public class WaitVsSleep {
-    public synchronized void sleepMethod(){
+    public synchronized void sleepMethod() {
         System.out.println("Sleep start-----");
         try {
             Thread.sleep(1000);//sleep并不会释放锁
@@ -11,9 +11,9 @@ public class WaitVsSleep {
         System.out.println("Sleep end-----");
     }
 
-    public synchronized void waitMethod(){
+    public synchronized void waitMethod() {
         System.out.println("Wait start-----");
-        synchronized (this){
+        synchronized (this) {
             try {
                 wait(1000);////wait会释放锁 wait依靠取得对象锁
             } catch (InterruptedException e) {
@@ -27,7 +27,7 @@ public class WaitVsSleep {
     //wait方法依赖于同步，而sleep方法可以直接调用。而更深层次的区别在于sleep方法只是暂时让出CPU的执行权，并不释放锁。而wait方法则需要释放锁。
     public static void main(String[] args) {
         final WaitVsSleep test1 = new WaitVsSleep();
-        for(int i = 0;i<3;i++){
+        for (int i = 0; i < 3; i++) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -46,7 +46,7 @@ public class WaitVsSleep {
 
 
         final WaitVsSleep test2 = new WaitVsSleep();
-        for(int i = 0;i<3;i++){
+        for (int i = 0; i < 3; i++) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {

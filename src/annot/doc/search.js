@@ -32,9 +32,11 @@ var catSearchTags = "SearchTags";
 var highlight = "<span class=\"resultHighlight\">$&</span>";
 var camelCaseRegexp = "";
 var secondaryMatcher = "";
+
 function escapeHtml(str) {
     return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
+
 function getHighlightedText(item) {
     var ccMatcher = new RegExp(escapeHtml(camelCaseRegexp));
     var escapedItem = escapeHtml(item);
@@ -45,8 +47,9 @@ function getHighlightedText(item) {
     }
     return label;
 }
+
 function getURLPrefix(ui) {
-    var urlPrefix="";
+    var urlPrefix = "";
     if (useModuleDirectories) {
         var slash = "/";
         if (ui.item.category === catModules) {
@@ -54,7 +57,7 @@ function getURLPrefix(ui) {
         } else if (ui.item.category === catPackages && ui.item.m) {
             return ui.item.m + slash;
         } else if ((ui.item.category === catTypes && ui.item.p) || ui.item.category === catMembers) {
-            $.each(packageSearchIndex, function(index, item) {
+            $.each(packageSearchIndex, function (index, item) {
                 if (item.m && ui.item.p == item.l) {
                     urlPrefix = item.m + slash;
                 }
@@ -66,23 +69,24 @@ function getURLPrefix(ui) {
     }
     return urlPrefix;
 }
+
 var watermark = 'Search';
-$(function() {
+$(function () {
     $("#search").val('');
     $("#search").prop("disabled", false);
     $("#reset").prop("disabled", false);
     $("#search").val(watermark).addClass('watermark');
-    $("#search").blur(function() {
+    $("#search").blur(function () {
         if ($(this).val().length == 0) {
             $(this).val(watermark).addClass('watermark');
         }
     });
-    $("#search").on('click keydown', function() {
+    $("#search").on('click keydown', function () {
         if ($(this).val() == watermark) {
             $(this).val('').removeClass('watermark');
         }
     });
-    $("#reset").click(function() {
+    $("#reset").click(function () {
         $("#search").val('');
         $("#search").focus();
     });
@@ -90,15 +94,15 @@ $(function() {
     $("#search")[0].setSelectionRange(0, 0);
 });
 $.widget("custom.catcomplete", $.ui.autocomplete, {
-    _create: function() {
+    _create: function () {
         this._super();
         this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
     },
-    _renderMenu: function(ul, items) {
+    _renderMenu: function (ul, items) {
         var rMenu = this,
-                currentCategory = "";
+            currentCategory = "";
         rMenu.menu.bindings = $();
-        $.each(items, function(index, item) {
+        $.each(items, function (index, item) {
             var li;
             if (item.l !== noResult.l && item.category !== currentCategory) {
                 ul.append("<li class=\"ui-autocomplete-category\">" + item.category + "</li>");
@@ -114,18 +118,18 @@ $.widget("custom.catcomplete", $.ui.autocomplete, {
             }
         });
     },
-    _renderItem: function(ul, item) {
+    _renderItem: function (ul, item) {
         var label = "";
         if (item.category === catModules) {
             label = getHighlightedText(item.l);
         } else if (item.category === catPackages) {
             label = (item.m)
-                    ? getHighlightedText(item.m + "/" + item.l)
-                    : getHighlightedText(item.l);
+                ? getHighlightedText(item.m + "/" + item.l)
+                : getHighlightedText(item.l);
         } else if (item.category === catTypes) {
             label = (item.p)
-                    ? getHighlightedText(item.p + "." + item.l)
-                    : getHighlightedText(item.l);
+                ? getHighlightedText(item.p + "." + item.l)
+                : getHighlightedText(item.l);
         } else if (item.category === catMembers) {
             label = getHighlightedText(item.p + "." + (item.c + "." + item.l));
         } else if (item.category === catSearchTags) {
@@ -138,7 +142,7 @@ $.widget("custom.catcomplete", $.ui.autocomplete, {
         if (item.category === catSearchTags) {
             if (item.d) {
                 div.html(label + "<span class=\"searchTagHolderResult\"> (" + item.h + ")</span><br><span class=\"searchTagDescResult\">"
-                                + item.d + "</span><br>");
+                    + item.d + "</span><br>");
             } else {
                 div.html(label + "<span class=\"searchTagHolderResult\"> (" + item.h + ")</span>");
             }
@@ -148,11 +152,11 @@ $.widget("custom.catcomplete", $.ui.autocomplete, {
         return li;
     }
 });
-$(function() {
+$(function () {
     $("#search").catcomplete({
         minLength: 1,
         delay: 300,
-        source: function(request, response) {
+        source: function (request, response) {
             var result = new Array();
             var presult = new Array();
             var tresult = new Array();
@@ -178,7 +182,7 @@ $(function() {
 
             if (moduleSearchIndex) {
                 var mdleCount = 0;
-                $.each(moduleSearchIndex, function(index, item) {
+                $.each(moduleSearchIndex, function (index, item) {
                     item.category = catModules;
                     if (exactMatcher.test(item.l)) {
                         result.push(item);
@@ -195,11 +199,11 @@ $(function() {
             if (packageSearchIndex) {
                 var pCount = 0;
                 var pkg = "";
-                $.each(packageSearchIndex, function(index, item) {
+                $.each(packageSearchIndex, function (index, item) {
                     item.category = catPackages;
                     pkg = (item.m)
-                            ? (item.m + "/" + item.l)
-                            : item.l;
+                        ? (item.m + "/" + item.l)
+                        : item.l;
                     if (exactMatcher.test(item.l)) {
                         presult.push(item);
                         pCount++;
@@ -214,7 +218,7 @@ $(function() {
             }
             if (typeSearchIndex) {
                 var tCount = 0;
-                $.each(typeSearchIndex, function(index, item) {
+                $.each(typeSearchIndex, function (index, item) {
                     item.category = catTypes;
                     var s = nestedName(item);
                     if (exactMatcher.test(s)) {
@@ -231,7 +235,7 @@ $(function() {
             }
             if (memberSearchIndex) {
                 var mCount = 0;
-                $.each(memberSearchIndex, function(index, item) {
+                $.each(memberSearchIndex, function (index, item) {
                     item.category = catMembers;
                     var s = nestedName(item);
                     if (exactMatcher.test(s)) {
@@ -248,7 +252,7 @@ $(function() {
             }
             if (tagSearchIndex) {
                 var tgCount = 0;
-                $.each(tagSearchIndex, function(index, item) {
+                $.each(tagSearchIndex, function (index, item) {
                     item.category = catSearchTags;
                     if (exactMatcher.test(item.l)) {
                         tgresult.push(item);
@@ -261,9 +265,9 @@ $(function() {
                 displayCount = (tgCount > displayCount) ? tgCount : displayCount;
             }
             displayCount = (displayCount > 500) ? displayCount : 500;
-            var counter = function() {
+            var counter = function () {
                 var count = {Modules: 0, Packages: 0, Types: 0, Members: 0, SearchTags: 0};
-                var f = function(item) {
+                var f = function (item) {
                     count[item.category] += 1;
                     return (count[item.category] <= displayCount);
                 };
@@ -271,7 +275,7 @@ $(function() {
             }();
             response(result.filter(counter));
         },
-        response: function(event, ui) {
+        response: function (event, ui) {
             if (!ui.content.length) {
                 ui.content.push(noResult);
             } else {
@@ -282,7 +286,7 @@ $(function() {
         position: {
             collision: "flip"
         },
-        select: function(event, ui) {
+        select: function (event, ui) {
             if (ui.item.l !== noResult.l) {
                 var url = getURLPrefix(ui);
                 if (ui.item.category === catModules) {
@@ -295,7 +299,7 @@ $(function() {
                     if (ui.item.url) {
                         url = ui.item.url;
                     } else {
-                    url += ui.item.l.replace(/\./g, '/') + "/package-summary.html";
+                        url += ui.item.l.replace(/\./g, '/') + "/package-summary.html";
                     }
                 } else if (ui.item.category === catTypes) {
                     if (ui.item.url) {

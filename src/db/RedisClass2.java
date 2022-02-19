@@ -31,7 +31,7 @@ public class RedisClass2 {
         System.out.println(jedis.get("msetname") + "-" + jedis.get("age") + "-" + jedis.get("qq"));
     }
 
-    public void testCmd2(){
+    public void testCmd2() {
         this.jedis.set("age", "22");
         this.jedis.incr("age");
         System.out.println(this.jedis.get("age"));
@@ -141,28 +141,28 @@ public class RedisClass2 {
             String vtype = rc.jedis.type(key);
             String v = "";
 
-            if(vtype.equals("string")){
-                 v = rc.jedis.get(key);
+            if (vtype.equals("string")) {
+                v = rc.jedis.get(key);
 
-            }else if (vtype.equals("hash")){
+            } else if (vtype.equals("hash")) {
                 v = "";
-                Map<String,String> data = rc.jedis.hgetAll(key);
-                for(Map.Entry<String,String> entry:data.entrySet()){
-                    v = v + entry.getKey() + ":"+ entry.getValue();
+                Map<String, String> data = rc.jedis.hgetAll(key);
+                for (Map.Entry<String, String> entry : data.entrySet()) {
+                    v = v + entry.getKey() + ":" + entry.getValue();
                 }
-                v = "{" + v +"}";
+                v = "{" + v + "}";
 
-            }else if("list".equals(vtype)){
+            } else if ("list".equals(vtype)) {
                 v = "";
                 List<String> list = rc.jedis.lrange(key, 0, -1);
                 for (int i = 0; i < list.size(); i++) {
-                     v = v +list.get(i);
+                    v = v + list.get(i);
                 }
-                v = "["+v+"]";
+                v = "[" + v + "]";
 
             }
 
-            System.out.println(key+" ===> "+ vtype +" ==> " + v);
+            System.out.println(key + " ===> " + vtype + " ==> " + v);
         }
 
 //        rc.testList();

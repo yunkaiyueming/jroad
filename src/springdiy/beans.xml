@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-    <bean id="user" class="com.yyb.model.User" />
-    <bean id="userDAO" class="com.yyb.dao.impl.UserDAOImpl" />
+    <bean id="user" class="com.yyb.model.User"/>
+    <bean id="userDAO" class="com.yyb.dao.impl.UserDAOImpl"/>
     <bean id="userService" class="com.yyb.service.UserService">
-        <property name="userDAO" bean="userDAO" />
+        <property name="userDAO" bean="userDAO"/>
     </bean>
 </beans>

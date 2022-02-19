@@ -10,33 +10,33 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class SimpleSerial {
-	
-	
-	public static void serialize() throws FileNotFoundException, IOException{
-		Person p = new Person();
-		p.age = 123;
-		p.name=  "zs";
-		p.sex="man";
-	    File file = new File("./Person.txt");
+
+
+    public static void serialize() throws FileNotFoundException, IOException {
+        Person p = new Person();
+        p.age = 123;
+        p.name = "zs";
+        p.sex = "man";
+        File file = new File("./Person.txt");
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
         out.writeObject(p);
         System.out.println("Person对象序列化成功！");
         out.close();
-	}
-	
-	public static Person unserialize() throws FileNotFoundException, IOException, ClassNotFoundException{
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("./Person.txt")));
-		Person p = (Person) ois.readObject();
+    }
+
+    public static Person unserialize() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("./Person.txt")));
+        Person p = (Person) ois.readObject();
         System.out.println("Person对象反序列化成功！");
         return p;
-	}
-	
-	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException{
-		SimpleSerial.serialize();
-		Person p = SimpleSerial.unserialize();
-		System.out.println(p);
-		System.out.println(p.toString());
-	}
+    }
+
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        SimpleSerial.serialize();
+        Person p = SimpleSerial.unserialize();
+        System.out.println(p);
+        System.out.println(p.toString());
+    }
 }
 
 //只有实现了Serializable和Externalizable接口的类的对象才能被序列化。
@@ -48,10 +48,11 @@ class Person implements Serializable {
     public int age;
     public String name;
     public String sex;
-    
-    public Person(){
-    	
+
+    public Person() {
+
     }
+
     public int getAge() {
         return age;
     }
@@ -75,8 +76,8 @@ class Person implements Serializable {
     public void setSex(String sex) {
         this.sex = sex;
     }
-    
-    public String toString(){
-    	return "[" + this.name + ", " + this.age + ", " + this.sex + "]";
+
+    public String toString() {
+        return "[" + this.name + ", " + this.age + ", " + this.sex + "]";
     }
 }

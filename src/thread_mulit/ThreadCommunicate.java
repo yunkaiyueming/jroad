@@ -15,7 +15,7 @@ public class ThreadCommunicate {
     public static void main3(String[] args) {
         Semaphore semaphore = new Semaphore(3);
         for (int i = 0; i < 5; i++) {
-            String thread_name = "线程"+i;
+            String thread_name = "线程" + i;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -39,30 +39,34 @@ public class ThreadCommunicate {
     //任务倒计数器，等待其他n个任务完成后才能执行 CountDownLatch
     public static void main4(String[] args) {
         final CountDownLatch latch = new CountDownLatch(2);
-        new Thread(){
+        new Thread() {
             public void run() {
                 try {
-                    System.out.println("子线程"+Thread.currentThread().getName()+"正在执行");
+                    System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");
                     Thread.sleep(3000);
-                    System.out.println("子线程"+Thread.currentThread().getName()+"执行完毕");
+                    System.out.println("子线程" + Thread.currentThread().getName() + "执行完毕");
                     latch.countDown();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            };
+            }
+
+            ;
         }.start();
 
-        new Thread(){
+        new Thread() {
             public void run() {
                 try {
-                    System.out.println("子线程"+Thread.currentThread().getName()+"正在执行");
+                    System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");
                     Thread.sleep(3000);
-                    System.out.println("子线程"+Thread.currentThread().getName()+"执行完毕");
+                    System.out.println("子线程" + Thread.currentThread().getName() + "执行完毕");
                     latch.countDown();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            };
+            }
+
+            ;
         }.start();
 
         try {
@@ -76,17 +80,17 @@ public class ThreadCommunicate {
     }
 
     //CyclicBarrier 让一组现成到达某个状态后再全部同时执行，且可以重复使用
-    public static void main5(String[] args){
+    public static void main5(String[] args) {
         int N = 5;
         //CyclicBarrier barrier  = new CyclicBarrier(N);
-        CyclicBarrier barrier  = new CyclicBarrier(N, new Runnable(){
-            public void run(){
+        CyclicBarrier barrier = new CyclicBarrier(N, new Runnable() {
+            public void run() {
                 System.out.println("好朋友，开始一起干");
             }
         });
 
         for (int i = 1; i <= N; i++) {
-            String thread_name = "线程"+i;
+            String thread_name = "线程" + i;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -96,7 +100,7 @@ public class ThreadCommunicate {
                         System.out.println(Thread.currentThread().getName() + "干活结束,等待一起走");
                         try {
                             barrier.await();
-                        }catch(BrokenBarrierException e){
+                        } catch (BrokenBarrierException e) {
                             e.printStackTrace();
                         }
                     } catch (InterruptedException e) {
@@ -104,7 +108,7 @@ public class ThreadCommunicate {
                     } finally {
                     }
 
-                    System.out.println(Thread.currentThread().getName()+" 干活结束");
+                    System.out.println(Thread.currentThread().getName() + " 干活结束");
 
                 }
             }, thread_name).start();
@@ -113,7 +117,7 @@ public class ThreadCommunicate {
 
     //Exchanger Exchanger是适用在两个线程之间数据交换的并发工具类，
     // 它的作用是找到一个同步点，当两个线程都执行到了同步点(exchange方法)之后(有一个没有执行到就一直等待，也可以设置等待超时时间)，就将自身线程的数据与对方交换。
-    public static void main6(String[] args){
+    public static void main6(String[] args) {
         Exchanger<String> changeV = new Exchanger<String>();
         class Task1 extends Thread {
             public String v;
@@ -136,15 +140,18 @@ public class ThreadCommunicate {
             }
         }
 
-        Thread t1 = new Task1(changeV,"finish");
-        Thread t2 = new Task1(changeV,"apple");
+        Thread t1 = new Task1(changeV, "finish");
+        Thread t2 = new Task1(changeV, "apple");
         t1.start();
-        try{Thread.sleep(2000);}catch (Exception e){}
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+        }
 
         t2.start();
-        try{
+        try {
             Thread.sleep(3000);
-        }catch (Exception e){
+        } catch (Exception e) {
         }
     }
 
@@ -158,7 +165,7 @@ public class ThreadCommunicate {
             @Override
             public void run() {
                 try {
-                    System.out.println(Thread.currentThread().getName()+"我有白粉，准备交换钱……");
+                    System.out.println(Thread.currentThread().getName() + "我有白粉，准备交换钱……");
                     Thread.sleep(5000);
                     /*
                      *  在此处等待另外一个线程到来，并进行数据交换，如果没有另一个线程到来，那么当前这个线程会处于休眠状态，直到3件事情发生：
@@ -167,7 +174,7 @@ public class ThreadCommunicate {
                      *  3、等待超时，当调用exchanger.exchange(x, timeout, unit)方法时有效(毒贩查觉到危险，没有来交易)
                      */
                     String result = exchanger.exchange("白粉");
-                    System.out.println(Thread.currentThread().getName()+"换回来的为:"+" "+result+" 原来为白粉！");
+                    System.out.println(Thread.currentThread().getName() + "换回来的为:" + " " + result + " 原来为白粉！");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -179,10 +186,10 @@ public class ThreadCommunicate {
             @Override
             public void run() {
                 try {
-                    System.out.println(Thread.currentThread().getName()+"我有钱，准备交换白粉");
+                    System.out.println(Thread.currentThread().getName() + "我有钱，准备交换白粉");
                     Thread.sleep(2000);
                     String result = exchanger.exchange("钱");
-                    System.out.println(Thread.currentThread().getName()+"换回来的为:"+" "+result+" 原来为钱！");
+                    System.out.println(Thread.currentThread().getName() + "换回来的为:" + " " + result + " 原来为钱！");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

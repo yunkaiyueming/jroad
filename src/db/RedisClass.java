@@ -59,7 +59,6 @@ public class RedisClass {
         }
     }
 
-
     public void testHash() {
         System.out.println("=============hash================");
         //-----添加数据----------
@@ -70,7 +69,6 @@ public class RedisClass {
         jedis.hmset("user", map);
         System.out.println(jedis.type("user"));
         System.out.println(jedis.hget("user", "age"));
-
 
         //取出user中的name，执行结果:[minxr]-->注意结果是一个泛型的List
         //第一个参数是存入redis中map对象的key，后面跟的是放入map中的对象的key，后面的key可以跟多个，是可变参数
@@ -127,6 +125,7 @@ public class RedisClass {
         return jedisPool;
     }
 
+    //测试redis操作
     public static void main(String[] args) {
         RedisClass rc = new RedisClass("127.0.0.1", 6379, "");
         rc.testCmd();
@@ -134,6 +133,6 @@ public class RedisClass {
         rc.testKeys();
         rc.testHash();
 
-        JedisPool pl =   rc.getRedisPool();
+        JedisPool pl = rc.getRedisPool();
     }
 }

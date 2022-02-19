@@ -1,28 +1,28 @@
 package T;
 
-interface People{
+interface People {
     public void Show();
 }
 
-class Student implements People{
-    public void Show(){
+class Student implements People {
+    public void Show() {
         System.out.println("study");
     }
 }
 
-class Teacher implements People{
-    public void Show(){
+class Teacher implements People {
+    public void Show() {
         System.out.println("teach");
     }
 }
 
 
 public class TaiDemo2 {
-    public static void run(People p){//接口People
+    public static void run(People p) {//接口People
         p.Show();
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Student s1 = new Student();
         Teacher t1 = new Teacher();
 

@@ -15,7 +15,7 @@ public class OutterClass {
 
     }
 
-    class InnerClass{
+    class InnerClass {
         private String name;
 
         public String getName() {

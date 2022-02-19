@@ -1,38 +1,39 @@
 package designPattern;
 
-interface iequp{
+interface iequp {
     void dps();
+
     void desc();
 }
 
-class WeaponA implements iequp{
-    public void dps(){
-        System.out.println("a dps"+20);
+class WeaponA implements iequp {
+    public void dps() {
+        System.out.println("a dps" + 20);
     }
 
-    public void desc(){
+    public void desc() {
         System.out.println("weapon a");
     }
 }
 
-class WeaponB implements iequp{
-    public void dps(){
+class WeaponB implements iequp {
+    public void dps() {
         System.out.println(30);
     }
 
-    public void desc(){
+    public void desc() {
         System.out.println("weapon a");
     }
 }
 
-interface iEquipDecorator extends iequp{
+interface iEquipDecorator extends iequp {
 }
 
-class blueEquipDecorator implements iEquipDecorator{
+class blueEquipDecorator implements iEquipDecorator {
     private iequp equip;
 
-    blueEquipDecorator(iequp e){
-        this.equip=e;
+    blueEquipDecorator(iequp e) {
+        this.equip = e;
     }
 
     @Override
@@ -48,11 +49,11 @@ class blueEquipDecorator implements iEquipDecorator{
     }
 }
 
-class redEquipDecorator implements iEquipDecorator{
+class redEquipDecorator implements iEquipDecorator {
     private iequp equip;
 
-    redEquipDecorator(iequp e){
-        this.equip=e;
+    redEquipDecorator(iequp e) {
+        this.equip = e;
     }
 
     @Override

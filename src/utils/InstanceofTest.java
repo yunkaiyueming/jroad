@@ -1,12 +1,10 @@
 package utils;
 
-class Animal
-{
+class Animal {
 
 }
 
-class Dog extends Animal
-{
+class Dog extends Animal {
 
 }
 
@@ -14,7 +12,6 @@ class Dog extends Animal
  * 使用instanceof判断对象类型
  *
  * @author pan_junbiao
- *
  */
 public class InstanceofTest {
     public static void main(String[] args) {

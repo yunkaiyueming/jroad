@@ -4,6 +4,6 @@ public interface HelloService {
     String hello(String name);
 }
 
- interface UserService {
+interface UserService {
     String hello(String name);
 }

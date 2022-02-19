@@ -4,7 +4,6 @@ package rpc;
 
 /**
  * RpcProvider
- *
  */
 public class RpcProvider {
 

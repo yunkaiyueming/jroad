@@ -15,15 +15,14 @@ public class TestSubMain {
     public static void main(String[] args) {
         final Jedis subscriberJedis = JEDIS_POOL.getResource();
         final Subscriber subscriber = new Subscriber();
-            {
-                try {
-                    System.out.println("Subscribing to mychannel,this thread will be block");
-                    subscriberJedis.subscribe(subscriber, CHANNEL);
-                    System.out.println("subscription ended");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+
+        try {
+            System.out.println("Subscribing to mychannel,this thread will be block");
+            subscriberJedis.subscribe(subscriber, CHANNEL);
+            System.out.println("subscription ended");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         subscriber.unsubscribe();
         subscriberJedis.close();

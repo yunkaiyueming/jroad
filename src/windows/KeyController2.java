@@ -26,7 +26,7 @@ public class KeyController2 {
 
         robot.setAutoWaitForIdle(true);
 
-        robot.mouseMove(500,500);
+        robot.mouseMove(500, 500);
         robot.mousePress(KeyEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
 
@@ -50,7 +50,7 @@ public class KeyController2 {
 //        }
 
 //        robot.mouseWheel();
-        int rgbV = robot.getPixelColor(1,2).getRGB();
+        int rgbV = robot.getPixelColor(1, 2).getRGB();
         System.out.println(rgbV);
 
         //robot.mouseMove(400,400);

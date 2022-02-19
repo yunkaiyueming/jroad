@@ -15,10 +15,13 @@ import java.net.Authenticator.RequestorType;
 @Documented
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.FIELD})//此注解作用于类和字段上
- @interface FieldTypeAnnotationTest {
+@Target({ElementType.TYPE, ElementType.FIELD})
+//此注解作用于类和字段上
+@interface FieldTypeAnnotationTest {
     String type() default "ignore";
+
     int age() default 27;
+
     String[] hobby(); //没有指定defalut的，需要在注解的时候显式指明
 }
 
@@ -27,26 +30,27 @@ import java.net.Authenticator.RequestorType;
 @Documented
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD) //次注解只能作用于方法上
+@Target(ElementType.METHOD)
+        //次注解只能作用于方法上
 @interface MethodAnnotationTest {
     String desc() default "method1";
 }
 
 
-@FieldTypeAnnotationTest(type = "class", hobby = { "smoke" })
+@FieldTypeAnnotationTest(type = "class", hobby = {"smoke"})
 public class ReflectAnnotation {
 
-    @FieldTypeAnnotationTest(hobby = { "sleep", "play" })
+    @FieldTypeAnnotationTest(hobby = {"sleep", "play"})
     private String maomao;
 
-    @FieldTypeAnnotationTest(hobby = { "phone", "buy" }, age = 27, type = "normal")
+    @FieldTypeAnnotationTest(hobby = {"phone", "buy"}, age = 27, type = "normal")
     private String zhangwenping;
 
     @MethodAnnotationTest()
     public void method1() {
     }
 
-    @MethodAnnotationTest(desc="method2")
+    @MethodAnnotationTest(desc = "method2")
     public void method2() {
     }
 
@@ -72,9 +76,9 @@ public class ReflectAnnotation {
         // ps：getDeclaredFields会返回类所有声明的字段，包括private、protected、public，但是不包括父类的
         // getFields:则会返回包括父类的所有的public字段，和getMethods()一样
         Field[] fields = clz.getDeclaredFields();
-        for(Field field : fields){
+        for (Field field : fields) {
             boolean fieldHasAnno = field.isAnnotationPresent(FieldTypeAnnotationTest.class);
-            if(fieldHasAnno){
+            if (fieldHasAnno) {
                 FieldTypeAnnotationTest fieldAnno = field.getAnnotation(FieldTypeAnnotationTest.class);
                 //输出注解属性
                 int age = fieldAnno.age();
@@ -86,9 +90,9 @@ public class ReflectAnnotation {
 
         //解析方法上的注解 被注解类
         Method[] methods = clz.getDeclaredMethods();
-        for(Method method : methods){
+        for (Method method : methods) {
             boolean methodHasAnno = method.isAnnotationPresent(MethodAnnotationTest.class);
-            if(methodHasAnno){
+            if (methodHasAnno) {
                 //得到注解
                 MethodAnnotationTest methodAnno = method.getAnnotation(MethodAnnotationTest.class);
                 //输出注解属性

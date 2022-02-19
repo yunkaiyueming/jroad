@@ -10,12 +10,13 @@ public class FutureTaskDemo {
 
     //使用Callable接口和FutureTask
     public static void main2(String[] args) throws ExecutionException, InterruptedException {
-        class MyCallable implements Callable<String>{
+        class MyCallable implements Callable<String> {
             String v = "";
 
-            public MyCallable(String v){
+            public MyCallable(String v) {
                 this.v = v;
             }
+
             @Override
             public String call() throws Exception {
                 return this.v;
@@ -23,7 +24,7 @@ public class FutureTaskDemo {
         }
 
         FutureTask<String> futureTask = new FutureTask<>(new MyCallable("zhangsan"));
-        FutureTask<String> futureTask2= new FutureTask<>(new MyCallable("lisi"));
+        FutureTask<String> futureTask2 = new FutureTask<>(new MyCallable("lisi"));
         /***
          * futureTask 实现了 Runnable接口
          * 所以新建线程的时候可以传入futureTask
@@ -43,9 +44,10 @@ public class FutureTaskDemo {
 
     //使用thread join方式 获取线程返回值
     public static void main3(String[] args) throws InterruptedException {
-         class MyThreadReturn implements Runnable {
+        class MyThreadReturn implements Runnable {
             /** 模拟线程执行完毕后主程序要获取的值*/
             private String returnValue;
+
             @Override
             public void run() {
                 System.out.println("线程执行......");
@@ -58,7 +60,8 @@ public class FutureTaskDemo {
                 System.out.println("线程执行完毕......");
                 returnValue = "hello world!!!";
             }
-            public String getReturnValue(){
+
+            public String getReturnValue() {
                 return returnValue;
             }
         }
@@ -73,7 +76,7 @@ public class FutureTaskDemo {
 
     //使用Callable接口和FutureTask
     public static void main4(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
-        class Task implements Callable<String>{
+        class Task implements Callable<String> {
             public String call() throws Exception {
                 Thread.sleep(3000);
                 return "hello";
@@ -89,10 +92,10 @@ public class FutureTaskDemo {
         // 从Future获取异步执行返回的结果:
         //String result = future.get(); // 会阻塞，直到任务完成后才返回结果。
 
-        try{
+        try {
             String result = future.get(2, TimeUnit.SECONDS); // 会阻塞，但只等待2s 直到任务完成后才返回结果。
-            System.out.println("获取返回结果"+result);
-        }catch (Exception e){
+            System.out.println("获取返回结果" + result);
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("超时了");
         }
@@ -106,11 +109,11 @@ public class FutureTaskDemo {
 //    异步任务出错时，会自动回调某个对象的方法；
 //    主线程设置好回调后，不再关心异步任务的执行。
 
-    public static String getV(){
+    public static String getV() {
         return "hello ";
     }
 
-    public static String getV2(){
+    public static String getV2() {
         return "world ";
     }
 

@@ -1,7 +1,7 @@
 package builtin;
 
-class catDemo{
-    public static void eat(){
+class catDemo {
+    public static void eat() {
         System.out.println("eat finish");
     }
 }
@@ -19,14 +19,15 @@ public class builtinClass {
         String a = "aaa";
         Integer i = 20;
 
-        System.out.println(a.getClass());//用对象的.getClass()方法获取
+        Class claname = a.getClass();
+        System.out.println(claname);//用对象的.getClass()方法获取
         System.out.println(i.getClass());
 
         System.out.println(String.class);//用类名.class方法获取
         System.out.println(Integer.class);
         System.out.println(catDemo.class);
 
-        Class catCla = Class.forName("builtin.catDemo");
+        Class catCla = Class.forName("builtin.catDemo"); //Class.forName包名
         System.out.println(catCla);
 
         catDemo cat1 = new catDemo();
@@ -34,12 +35,12 @@ public class builtinClass {
 
     }
 
-    public static void main2(String [] args)throws Exception{
-        String str1="abc";
-        Class cls1=str1.getClass();
-        Class cls2=String.class;
-        Class cls3=Class.forName("java.lang.String");
-        System.out.println(cls1==cls2);
-        System.out.println(cls1==cls3);
+    public static void main2(String[] args) throws Exception {
+        String str1 = "abc";
+        Class cls1 = str1.getClass();
+        Class cls2 = String.class;
+        Class cls3 = Class.forName("java.lang.String");
+        System.out.println(cls1 == cls2);
+        System.out.println(cls1 == cls3);
     }
 }

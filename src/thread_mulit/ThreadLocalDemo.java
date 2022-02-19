@@ -7,7 +7,7 @@ public class ThreadLocalDemo {
         System.out.println(Thread.currentThread().getName() + ": " + s);
     }
 
-    public static  void main2(String[] args){
+    public static void main2(String[] args) {
         new Thread(() -> {
             log("running");
         }
@@ -30,9 +30,9 @@ public class ThreadLocalDemo {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println(Thread.currentThread().getName()+ctx.get());
+                System.out.println(Thread.currentThread().getName() + ctx.get());
                 ctx.set("aa");
-                System.out.println(Thread.currentThread().getName()+ctx.get());
+                System.out.println(Thread.currentThread().getName() + ctx.get());
             }
         }).start();
 
@@ -41,9 +41,9 @@ public class ThreadLocalDemo {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println(Thread.currentThread().getName()+ctx.get());
+                System.out.println(Thread.currentThread().getName() + ctx.get());
                 ctx.set("bb");
-                System.out.println(Thread.currentThread().getName()+ctx.get());
+                System.out.println(Thread.currentThread().getName() + ctx.get());
             }
         }).start();
 

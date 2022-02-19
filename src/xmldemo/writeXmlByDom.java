@@ -25,7 +25,7 @@ public class writeXmlByDom {
 
     private static void writeXmlByDom() {
         try {
-            DocumentBuilderFactory factory =  DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
 
             Document document = builder.newDocument();
@@ -71,7 +71,7 @@ public class writeXmlByDom {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         writeXmlByDom.writeXmlByDom();
     }
 }

@@ -14,7 +14,7 @@ public class KeyController implements Runnable {
 
     public KeyController() {
         dim = Toolkit.getDefaultToolkit().getScreenSize();
-        System.out.println("computer imformation:\n" + "width:"+dim.width+"\theight:"+dim.height);
+        System.out.println("computer imformation:\n" + "width:" + dim.width + "\theight:" + dim.height);
         try {
             robot = new Robot();
         } catch (AWTException ex) {
@@ -23,10 +23,10 @@ public class KeyController implements Runnable {
     }
 
     public void run() {
-        while(!stop) {
+        while (!stop) {
             robot.mousePress(InputEvent.BUTTON1_MASK);
             robot.keyPress(13);
-            robot.mouseMove(1,2);
+            robot.mouseMove(1, 2);
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {

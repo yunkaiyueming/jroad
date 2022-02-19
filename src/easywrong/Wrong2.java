@@ -5,8 +5,7 @@ import java.util.List;
 
 //集合循环过程中不能修改删除
 public class Wrong2 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         List<Person> list = new ArrayList<Person>();
         Person p1 = new Person("张三", 23);
         Person p2 = new Person("李四", 26);
@@ -19,14 +18,11 @@ public class Wrong2 {
         list.add(p3);
         list.add(p4);
         list.add(p5);
-        for(Person p : list) //Exception in thread "main" java.util.ConcurrentModificationException
+        for (Person p : list) //Exception in thread "main" java.util.ConcurrentModificationException
         {
-            if("王五".equals(p.getName()))
-            {
+            if ("王五".equals(p.getName())) {
                 list.remove(p); // 不能在此时删除对象。
-            }
-            else if("李四".equals(p.getName()))
-            {
+            } else if ("李四".equals(p.getName())) {
                 list.remove(p); // 不能在此时删除对象。
             }
         }

@@ -9,7 +9,7 @@ public class WaitVsYeild implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        for(int i=0;i<5;i++){
+        for (int i = 0; i < 5; i++) {
             System.out.println(Thread.currentThread().getName() + ": " + i);
             Thread.yield();//
         }
@@ -17,8 +17,8 @@ public class WaitVsYeild implements Runnable {
 
     public static void main(String[] args) {
         WaitVsYeild runn = new WaitVsYeild();
-        Thread t1 = new Thread(runn,"FirstThread");
-        Thread t2 = new Thread(runn,"SecondThread");
+        Thread t1 = new Thread(runn, "FirstThread");
+        Thread t2 = new Thread(runn, "SecondThread");
 
         t1.start();
         t2.start();

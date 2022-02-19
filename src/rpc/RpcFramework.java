@@ -14,9 +14,9 @@ import java.util.Map;
  * RpcFramework
  */
 public class RpcFramework {
-    static Map route = new HashMap<String,Object>();
+    static Map route = new HashMap<String, Object>();
 
-    public static void initRoute(){
+    public static void initRoute() {
         route.put("hello", new HelloServiceImpl());
         route.put("user", new UserServiceImpl());
     }
@@ -25,7 +25,7 @@ public class RpcFramework {
      * 暴露服务
      *
      * @param service 服务实现
-     * @param port 服务端口
+     * @param port    服务端口
      * @throws Exception
      */
     public static void export(Object service, int port) throws Exception {
@@ -33,10 +33,10 @@ public class RpcFramework {
             throw new IllegalArgumentException("service instance == null");
         if (port <= 0 || port > 65535)
             throw new IllegalArgumentException("Invalid port" + port);
-        System.out.println("Export service" + service.getClass().getName()+ "on port" + port);
+        System.out.println("Export service" + service.getClass().getName() + "on port" + port);
 
         ServerSocket server = new ServerSocket(port);
-        for(;;) {
+        for (; ; ) {
             try {
                 final Socket socket = server.accept();
                 Object finalService = service;
@@ -47,9 +47,10 @@ public class RpcFramework {
                             try {
                                 ObjectInputStream input = new ObjectInputStream(socket.getInputStream());//读取socket输入
                                 try {
-                                    String methodName = input.readUTF(); System.out.println("recv:"+methodName);
-                                    Class<?>[] parameterTypes = (Class<?>[])input.readObject();
-                                    Object[] arguments = (Object[])input.readObject();
+                                    String methodName = input.readUTF();
+                                    System.out.println("recv:" + methodName);
+                                    Class<?>[] parameterTypes = (Class<?>[]) input.readObject();
+                                    Object[] arguments = (Object[]) input.readObject();
                                     ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
                                     try {
                                         Method method = finalService.getClass().getMethod(methodName, parameterTypes);
@@ -80,10 +81,10 @@ public class RpcFramework {
     /**
      * 引用服务
      *
-     * @param <T> 接口泛型
+     * @param <T>            接口泛型
      * @param interfaceClass 接口类型
-     * @param host 服务器主机名
-     * @param port 服务器端口
+     * @param host           服务器主机名
+     * @param port           服务器端口
      * @return 远程服务
      * @throws Exception
      */
@@ -91,7 +92,7 @@ public class RpcFramework {
     public static <T> T refer(final Class<T> interfaceClass, final String host, final int port) throws Exception {
         if (interfaceClass == null)
             throw new IllegalArgumentException("Interface class == null");
-        if (! interfaceClass.isInterface())
+        if (!interfaceClass.isInterface())
             throw new IllegalArgumentException("The" + interfaceClass.getName() + "must be interface class!");
         if (host == null || host.length() == 0)
             throw new IllegalArgumentException("Host == null!");
@@ -100,7 +101,7 @@ public class RpcFramework {
 
         System.out.println("Get remote service" + interfaceClass.getName() + "from server" + host + ":" + port);
 
-        return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[] {interfaceClass}, new InvocationHandler() {
+        return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass}, new InvocationHandler() {
             public Object invoke(Object proxy, Method method, Object[] arguments) throws Throwable {
                 Socket socket = new Socket(host, port);
                 try {
@@ -111,7 +112,7 @@ public class RpcFramework {
                         output.writeObject(arguments);
 
 
-                        System.out.println("send:"+method.getName());
+                        System.out.println("send:" + method.getName());
 
                         ObjectInputStream input = new ObjectInputStream(socket.getInputStream());//读取返回的socket数据
                         try {

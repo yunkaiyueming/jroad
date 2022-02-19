@@ -7,16 +7,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+
+//JDK提供了一组主要的数据结构实现，如List、Map、Set、Queue 等常用数据结构。
+// 这些数据都继承自java.util.Collection接口，并位于java.util包内
 public class ArrayDemo {
 
-    public static void main1(String[] args){
+    public static void main1(String[] args) {
         String[] arr1 = new String[10];//字符串数组
         arr1[0] = "aa";
         arr1[1] = "bb";
-        for(int i=0;i<arr1.length;i++){
-            System.out.println(i+":"+arr1[i]);
+        for (int i = 0; i < arr1.length; i++) {
+            System.out.println(i + ":" + arr1[i]);
         }
-        for(String v:arr1){ //for循环输出
+        for (String v : arr1) { //for循环输出
             System.out.println(v);
         }
 
@@ -24,7 +27,7 @@ public class ArrayDemo {
         float[] arr3 = new float[10];
 
         int[] arr4;
-        arr4 = new int[]{1,3,4,5};
+        arr4 = new int[]{1, 3, 4, 5};
     }
 
     public static void main(String... args) {
@@ -38,7 +41,7 @@ public class ArrayDemo {
         }
     }
 
-    public static void main2(String[] args){
+    public static void main2(String[] args) {
         String[] strArray = new String[2];
         strArray[0] = "aa";
         strArray[1] = "bb";
@@ -49,16 +52,16 @@ public class ArrayDemo {
         System.out.println(list);
     }
 
-    public static void main3(String[] args){
+    public static void main3(String[] args) {
         String[] strArray = new String[2];
-        ArrayList<String> list = new ArrayList<String>(Arrays.asList(strArray)) ;
+        ArrayList<String> list = new ArrayList<String>(Arrays.asList(strArray));
         list.add("1");
         System.out.println(list);
     }
 
-    public static void main4(String[] args){
+    public static void main4(String[] args) {
         String[] strArray = new String[2];
-        ArrayList< String> arrayList = new ArrayList<String>(strArray.length);
+        ArrayList<String> arrayList = new ArrayList<String>(strArray.length);
         Collections.addAll(arrayList, strArray);
         arrayList.add("1");
         System.out.println(arrayList);

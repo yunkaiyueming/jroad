@@ -51,11 +51,12 @@ class NumbersProducer implements Runnable {
             Thread.currentThread().interrupt();
         }
     }
+
     //向队列里塞
     private void generateNumbers() throws InterruptedException {
         for (int i = 0; i < 100; i++) {
             int innum = ThreadLocalRandom.current().nextInt(100);
-            System.out.println("入队列数据:"+innum);
+            System.out.println("入队列数据:" + innum);
             numbersQueue.put(innum);
         }
         for (int j = 0; j < poisonPillPerProducer; j++) {//入poisonPillPerProducer次

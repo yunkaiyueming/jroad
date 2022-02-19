@@ -10,23 +10,29 @@ class Counter {
 }
 
 class AddThread extends Thread {
-    public  void run() {
-        for (int i=0; i<100000; i++) { Counter.count += 2;System.out.println("+1==>"+Counter.count); }
+    public void run() {
+        for (int i = 0; i < 100000; i++) {
+            Counter.count += 2;
+            System.out.println("+1==>" + Counter.count);
+        }
     }
 }
 
 class DecThread extends Thread {
-    public  void run() {
-        for (int i=0; i<100000; i++) { Counter.count -= 2;System.out.println("-1==>"+Counter.count); }
+    public void run() {
+        for (int i = 0; i < 100000; i++) {
+            Counter.count -= 2;
+            System.out.println("-1==>" + Counter.count);
+        }
     }
 }
 
 class AddThread1 extends Thread {
     public void run() {
-        for (int i=0; i<100000; i++) {
-            synchronized(Counter.lock) {
+        for (int i = 0; i < 100000; i++) {
+            synchronized (Counter.lock) {
                 Counter.count += 2;
-                System.out.println("+1==>"+Counter.count);
+                System.out.println("+1==>" + Counter.count);
             }
         }
     }
@@ -34,10 +40,10 @@ class AddThread1 extends Thread {
 
 class DecThread1 extends Thread {
     public void run() {
-        for (int i=0; i<100000; i++) {
-            synchronized(Counter.lock) {
+        for (int i = 0; i < 100000; i++) {
+            synchronized (Counter.lock) {
                 Counter.count -= 2;
-                System.out.println("-1==>"+Counter.count);
+                System.out.println("-1==>" + Counter.count);
             }
         }
     }
@@ -48,22 +54,22 @@ class DecThread1 extends Thread {
 class Counter2 {
     private int value = 0;
     private int another = 0;
-    private final Object lockA  = new Object();
-    private final Object lockB  = new Object();
+    private final Object lockA = new Object();
+    private final Object lockB = new Object();
 
     public void add(int m) {
-        synchronized(lockA) { // 获得lockA的锁
+        synchronized (lockA) { // 获得lockA的锁
             this.value += m;
-            synchronized(lockB) { // 获得lockB的锁
+            synchronized (lockB) { // 获得lockB的锁
                 this.another += m;
             } // 释放lockB的锁
         } // 释放lockA的锁
     }
 
     public void dec(int m) {
-        synchronized(lockA) { // 获得lockA的锁
+        synchronized (lockA) { // 获得lockA的锁
             this.value -= m;
-            synchronized(lockB) { // 获得lockB的锁
+            synchronized (lockB) { // 获得lockB的锁
                 this.another -= m;
             } // 释放lockB的锁
         } // 释放lockA的锁
@@ -71,7 +77,7 @@ class Counter2 {
 }
 
 
- class Counter3 extends Thread{
+class Counter3 extends Thread {
     private final Lock lock = new ReentrantLock();
     private int count;
 
@@ -83,7 +89,8 @@ class Counter2 {
             lock.unlock();
         }
     }
-    public void get(){
+
+    public void get() {
         System.out.println(count);
     }
 }
@@ -117,7 +124,6 @@ public class SynchorizedDemo {
         dec.join();
         System.out.println(Counter.count);//并发安全
     }
-
 
 
     //可重入锁

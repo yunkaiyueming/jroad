@@ -32,9 +32,10 @@ class Man implements Serializable {
 
 public class SerialDemo2 {
 
-    public static  void main(String[] args){
+    public static void main(String[] args) {
         SerialDemo2.writeSerializableObject();
-        SerialDemo2.readSerializableObject();;
+        SerialDemo2.readSerializableObject();
+        ;
     }
 
     // Serializable：把对象序列化

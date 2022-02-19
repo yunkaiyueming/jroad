@@ -1,16 +1,17 @@
 package other;
 
-class A{
+class A {
     public int age = 10;
     public int name = 11;
 }
-class B{
+
+class B {
     public int age = 10;
     public int name = 11;
 }
 
 public class hashCodeDemo {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         //对于字符串对象是根据字符内容得出hashCode的，因为这里s1和s2最终指向的都是“hello”，因为字符内容是一样的，所以得出的哈希码也是相同的。
         String s1 = "hello";

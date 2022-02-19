@@ -11,7 +11,7 @@ import java.lang.annotation.Retention;
 //javadoc -d doc MyDocumented.java
 
 @Documented
-@Target({ ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.TYPE, ElementType.METHOD})
 @interface MyDocument {
     public String value() default "这是@Documented注解";
 }

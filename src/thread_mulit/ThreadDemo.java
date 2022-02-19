@@ -6,7 +6,10 @@ import java.util.concurrent.FutureTask;
 class BThread extends Thread {
     public BThread() {
         super("[BThread] Thread");
-    };
+    }
+
+    ;
+
     public void run() {
         String threadName = Thread.currentThread().getName();
         System.out.println(threadName + " start.");
@@ -21,12 +24,15 @@ class BThread extends Thread {
         }
     }
 }
+
 class AThread extends Thread {
     BThread bt;
+
     public AThread(BThread bt) {
         super("[AThread] Thread");
         this.bt = bt;
     }
+
     public void run() {
         String threadName = Thread.currentThread().getName();
         System.out.println(threadName + " start.");
@@ -40,7 +46,7 @@ class AThread extends Thread {
 }
 
 //实现Runable接口，将类对象作为Thread的执行对象
-class MyRunable implements Runnable{
+class MyRunable implements Runnable {
     @Override
     public void run() {
         System.out.println("start new thread with MyRunable!");
@@ -100,9 +106,10 @@ public class ThreadDemo {
         class MyCallable implements Callable<String> {
             String v = "";
 
-            public MyCallable(String v){
+            public MyCallable(String v) {
                 this.v = v;
             }
+
             @Override
             public String call() throws Exception {
                 return this.v;
@@ -110,7 +117,7 @@ public class ThreadDemo {
         }
 
         FutureTask<String> futureTask = new FutureTask<>(new MyCallable("zhangsan"));
-        FutureTask<String> futureTask2= new FutureTask<>(new MyCallable("lisi"));
+        FutureTask<String> futureTask2 = new FutureTask<>(new MyCallable("lisi"));
         /***
          * futureTask 实现了 Runnable接口
          * 所以新建线程的时候可以传入futureTask

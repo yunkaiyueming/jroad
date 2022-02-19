@@ -8,24 +8,24 @@ public class Publisher {
     private Jedis publisherJedis;
     private String channel;
 
-    public Publisher(Jedis publishJedis,String channel){
-        this.publisherJedis=publishJedis;
-        this.channel=channel;
+    public Publisher(Jedis publishJedis, String channel) {
+        this.publisherJedis = publishJedis;
+        this.channel = channel;
     }
 
-    public void startPublish(){
-        try{
+    public void startPublish() {
+        try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            while(true){
+            while (true) {
                 System.out.println("请输入message:");
                 String line = reader.readLine();
-                if(!"quit".equals(line)){
+                if (!"quit".equals(line)) {
                     publisherJedis.publish(channel, line);
-                }else{
+                } else {
                     break;
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

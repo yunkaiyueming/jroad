@@ -16,7 +16,7 @@ public class switchDemo {
         }
 
         final int OKFLAG = 12;
-        switch (OKFLAG){
+        switch (OKFLAG) {
             case 12:
                 System.out.println("12 success");
                 break;

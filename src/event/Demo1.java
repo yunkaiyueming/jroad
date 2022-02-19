@@ -73,8 +73,8 @@ public class Demo1 {
     private void Notifies() {
         Iterator<EventListener> iterator = mClickListeners.iterator();
         while (iterator.hasNext()) {
-            EventListener tmp =  iterator.next();
-            if(tmp.getClass().equals(ButtonClickListenerInner.class)){
+            EventListener tmp = iterator.next();
+            if (tmp.getClass().equals(ButtonClickListenerInner.class)) {
                 // 获取当前的对象
                 ButtonClickListenerInner listener = (ButtonClickListenerInner) tmp;
                 // 事件触发,事件的构造函数参数为事件源this
@@ -85,13 +85,13 @@ public class Demo1 {
 
 
     //触发移动事件
-    public void ButtonMove(){
+    public void ButtonMove() {
         Iterator<EventListener> iterator = mClickListeners.iterator();
         while (iterator.hasNext()) {
-            EventListener tmp =  iterator.next();
+            EventListener tmp = iterator.next();
             //System.out.println(tmp.getClass());
             //System.out.println(ButtonMoveListenerInner.class);
-            if(tmp.getClass().equals(ButtonMoveListenerInner.class)){
+            if (tmp.getClass().equals(ButtonMoveListenerInner.class)) {
                 // 获取当前的对象
                 ButtonMoveListenerInner listener = (ButtonMoveListenerInner) tmp;
                 // 事件触发,事件的构造函数参数为事件源this
@@ -143,11 +143,11 @@ public class Demo1 {
 
 /**
  * 事件类,包含了事件源
+ *
+ * @author Mr.Simple
  * @ClassName: ValueChangeEvent
  * @Description:
- * @author Mr.Simple
  * @date Apr 5, 2013 2:12:37 PM
- *
  */
 class ButtonClickEvent extends EventObject {
 
@@ -161,19 +161,21 @@ class ButtonClickEvent extends EventObject {
 
     /**
      * 构造函数
+     *
      * @param sObject
      */
-    public ButtonClickEvent(Object sObject){
+    public ButtonClickEvent(Object sObject) {
         super(sObject);
         mSourceObject = sObject;
     }
 
     /**
      * 构造函数
+     *
      * @param sObject
      * @param tag
      */
-    public ButtonClickEvent(Object sObject, String  tag){
+    public ButtonClickEvent(Object sObject, String tag) {
         super(sObject);
         mSourceObject = sObject;
         mTag = tag;
@@ -182,6 +184,7 @@ class ButtonClickEvent extends EventObject {
     /**
      * 获取事件源
      * (non-Javadoc)
+     *
      * @see java.util.EventObject#getSource()
      */
     public Object getSource() {
@@ -189,36 +192,32 @@ class ButtonClickEvent extends EventObject {
     }
 
     /**
-     *
-     * @Title: setSource
-     * @Description: 设置事件源
      * @param obj
      * @return void
      * @throws
+     * @Title: setSource
+     * @Description: 设置事件源
      */
     public void setSource(Object obj) {
         mSourceObject = obj;
     }
 
     /**
-     *
-     * @Title: getTag
-     * @Description: 获得tag
-     * @return
      * @return String
      * @throws
+     * @Title: getTag
+     * @Description: 获得tag
      */
-    public String getTag(){
+    public String getTag() {
         return mTag;
     }
 
     /**
-     *
-     * @Title: setTag
-     * @Description: 设置tag
      * @param tag
      * @return void
      * @throws
+     * @Title: setTag
+     * @Description: 设置tag
      */
     public void setTag(String tag) {
         mTag = tag;
@@ -228,33 +227,30 @@ class ButtonClickEvent extends EventObject {
 
 
 /**
- *
+ * @author Mr.Simple
  * @ClassName: ButtonClickListenerInner
  * @Description: 内部类的写法
- * @author Mr.Simple
  * @date Apr 5, 2013 2:41:02 PM
- *
  */
- class ButtonClickListenerInner implements EventListener{
+class ButtonClickListenerInner implements EventListener {
     /**
-     *
-     * @Title: ItemClicked
-     * @Description: 点击事件
      * @param event
      * @return void
      * @throws
+     * @Title: ItemClicked
+     * @Description: 点击事件
      */
     public void ButtonClicked(ButtonClickEvent event) {
         // 获取事件源
-        Demo1 source = (Demo1)event.getSource();
-        System.out.println("ButtonClickListenerInner监听器触发，捕获你点击的是 : " + source.getItemString()) ;
+        Demo1 source = (Demo1) event.getSource();
+        System.out.println("ButtonClickListenerInner监听器触发，捕获你点击的是 : " + source.getItemString());
     }
 }
 
-class ButtonMoveListenerInner implements EventListener{
+class ButtonMoveListenerInner implements EventListener {
     public void ButtonMove(ButtonClickEvent event) {
         // 获取事件源
-        Demo1 source = (Demo1)event.getSource();
-        System.out.println("ButtonMoveListenerInner监听器触发，捕获 你移动到的是 : " + source.getItemString()) ;
+        Demo1 source = (Demo1) event.getSource();
+        System.out.println("ButtonMoveListenerInner监听器触发，捕获 你移动到的是 : " + source.getItemString());
     }
 }

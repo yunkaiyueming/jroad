@@ -13,7 +13,9 @@ public class stream {
 
         List HollisList = strList.stream().filter(string -> string.contains("Hollis")).collect(Collectors.toList());
 
-        HollisList.forEach( s -> { System.out.println(s); } );
+        HollisList.forEach(s -> {
+            System.out.println(s);
+        });
     }
 
 }

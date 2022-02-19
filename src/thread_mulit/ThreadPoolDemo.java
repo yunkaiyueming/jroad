@@ -55,7 +55,7 @@ public class ThreadPoolDemo {
                 System.out.println(Thread.currentThread().getName());
                 System.out.println("delay 3 seconds");
             }
-        },1, TimeUnit.SECONDS );
+        }, 1, TimeUnit.SECONDS);
 
         //周期性执行任务
         scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
@@ -70,13 +70,13 @@ public class ThreadPoolDemo {
     //newSingleThreadExecutor 单一示例 只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行
     public static void main9(String[] args) {
         ConcurrentHashMap mapData = new ConcurrentHashMap();
-        Map<String,String> mapData2 = new ConcurrentHashMap<String, String>();
+        Map<String, String> mapData2 = new ConcurrentHashMap<String, String>();
         mapData2.put("school", "middle_school");
         mapData2.put("pwd", "111");
         for (Map.Entry<String, String> entry : mapData2.entrySet()) {
             String key = entry.getKey();
             String val = entry.getValue();
-            System.out.println(key+"===>"+val);
+            System.out.println(key + "===>" + val);
         }
 
         ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
@@ -84,7 +84,7 @@ public class ThreadPoolDemo {
         singleThreadExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                System.out.println("开始干活第1个:"+ Thread.currentThread().getName());
+                System.out.println("开始干活第1个:" + Thread.currentThread().getName());
                 mapData.put("age", 12);
             }
         });
@@ -92,12 +92,12 @@ public class ThreadPoolDemo {
         singleThreadExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                System.out.println("开始干活第2个:"+ Thread.currentThread().getName());
+                System.out.println("开始干活第2个:" + Thread.currentThread().getName());
                 mapData.put("name", "zs");
 
                 try {
                     Thread.sleep(1200);
-                }catch (InterruptedException e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -106,7 +106,7 @@ public class ThreadPoolDemo {
         singleThreadExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                System.out.println("开始干活第3个:"+ Thread.currentThread().getName());
+                System.out.println("开始干活第3个:" + Thread.currentThread().getName());
                 System.out.println(mapData.get("name"));
                 System.out.println(mapData.keys());
             }
@@ -118,8 +118,9 @@ public class ThreadPoolDemo {
 
     //newFixedThreadPool 固定线程池 继承线程类的方式 实现
     public static void main10(String[] args) {
-        class Task extends Thread{//继承现成类
-            public void run(){
+        class Task extends Thread {//继承现成类
+
+            public void run() {
                 System.out.println(Thread.currentThread().getName());
                 try {
                     Thread.sleep(500);
@@ -152,9 +153,10 @@ public class ThreadPoolDemo {
         ExecutorService executorService = Executors.newCachedThreadPool();
         Future<String> fut = executorService.submit(new MyCallable()); //使用submit提交数据
         executorService.shutdown();
-        try{
-            System.out.println("我拿到线程返回结果了:"+fut.get());
-        }catch (Exception e){}
+        try {
+            System.out.println("我拿到线程返回结果了:" + fut.get());
+        } catch (Exception e) {
+        }
 
     }
 }

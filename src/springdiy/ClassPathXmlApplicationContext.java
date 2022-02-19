@@ -12,14 +12,13 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-public class ClassPathXmlApplicationContext implements BeanFactory
-{
+public class ClassPathXmlApplicationContext implements BeanFactory {
     private Map<String, Object> beans = new HashMap<String, Object>();
+
     public ClassPathXmlApplicationContext() throws JDOMException, IOException,
             InstantiationException, IllegalAccessException,
             ClassNotFoundException, SecurityException, NoSuchMethodException,
-            IllegalArgumentException, InvocationTargetException
-    {
+            IllegalArgumentException, InvocationTargetException {
         SAXBuilder sb = new SAXBuilder();
         // 构造文档对象
         Document doc = sb.build(ClassPathXmlApplicationContext.class
@@ -29,8 +28,7 @@ public class ClassPathXmlApplicationContext implements BeanFactory
         // 取到根元素所有元素
         List list = root.getChildren();
 
-        for (int i = 0; i < list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             Element element = (Element) list.get(i);
             // 取id子元素
             String beanid = element.getAttributeValue("id");
@@ -42,8 +40,7 @@ public class ClassPathXmlApplicationContext implements BeanFactory
             beans.put(beanid, o);
             // 获取property 进行依赖注入
             for (Element propertyElement : (List<Element>) element
-                    .getChildren("property"))
-            {
+                    .getChildren("property")) {
                 String name = propertyElement.getAttributeValue("name");
                 System.out.println(name);//userDAO
                 String bean = propertyElement.getAttributeValue("bean");
@@ -71,9 +68,9 @@ public class ClassPathXmlApplicationContext implements BeanFactory
             }
         }
     }
+
     @Override
-    public Object getBean(String name)
-    {
+    public Object getBean(String name) {
         return beans.get(name);
     }
 }

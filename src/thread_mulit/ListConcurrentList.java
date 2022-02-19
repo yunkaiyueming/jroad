@@ -5,53 +5,61 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 //并发安全容器
-public class ListConcurrentList{
+public class ListConcurrentList {
     private static final int THREAD_POOL_MAX_NUM = 10;
     private List<String> mList = new ArrayList<String>();
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         new ListConcurrentList().start();
     }
+
     private void initData() {
-        for(int i = 0 ; i <= THREAD_POOL_MAX_NUM ; i ++){
-            this.mList.add("...... Line "+(i+1)+" ......");
+        for (int i = 0; i <= THREAD_POOL_MAX_NUM; i++) {
+            this.mList.add("...... Line " + (i + 1) + " ......");
         }
     }
-    private void start(){
+
+    private void start() {
         initData();
         ExecutorService service = Executors.newFixedThreadPool(THREAD_POOL_MAX_NUM);
-        for(int i = 0 ; i < THREAD_POOL_MAX_NUM ; i ++){
+        for (int i = 0; i < THREAD_POOL_MAX_NUM; i++) {
             service.execute(new ListReader(this.mList));
-            service.execute(new ListWriter(this.mList,i));
+            service.execute(new ListWriter(this.mList, i));
         }
         service.shutdown();
     }
-    private class ListReader implements Runnable{
-        private List<String> mList ;
-        public  ListReader(List<String> list) {
+
+    private class ListReader implements Runnable {
+        private List<String> mList;
+
+        public ListReader(List<String> list) {
             this.mList = list;
         }
+
         @Override
         public void run() {
-            if(this.mList!=null){
-                for(String str : this.mList){
-                    System.out.println(Thread.currentThread().getName()+" : "+ str);
+            if (this.mList != null) {
+                for (String str : this.mList) {
+                    System.out.println(Thread.currentThread().getName() + " : " + str);
                 }
             }
         }
     }
-    private class ListWriter implements Runnable{
-        private List<String> mList ;
+
+    private class ListWriter implements Runnable {
+        private List<String> mList;
         private int mIndex;
-        public  ListWriter(List<String> list,int index) {
+
+        public ListWriter(List<String> list, int index) {
             this.mList = list;
             this.mIndex = index;
         }
+
         @Override
         public void run() {
-            if(this.mList!=null){
+            if (this.mList != null) {
                 //this.mList.remove(this.mIndex);
-                this.mList.add("...... add "+mIndex +" ......");
+                this.mList.add("...... add " + mIndex + " ......");
             }
         }
     }
