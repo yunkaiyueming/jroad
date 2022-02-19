@@ -1,9 +1,16 @@
 package thread;
 
+//wait 和notify 来解决 线程通信
 public class WaitDemo {
     public static void main(String[] args) {
         ThreadB b = new ThreadB();
         b.start();
+
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         synchronized (b) {
             try {
