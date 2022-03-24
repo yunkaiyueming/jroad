@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<peoples>
+    <people id="1">
+        <name>张三</name>
+        <age>45</age>
+    </people>
+    <lan id="2">
+        <name>李四</name>
+        <age>88</age>
+    </lan>
+</peoples>

@@ -1,0 +1,21 @@
+
+继承关系图：
+Collection
+  List
+    ArrayList
+    LinkedList
+    Vector
+
+  Set
+    TreeSet
+    HashSet
+        LinkedHashSet
+
+  Queue
+
+
+Map
+    TreeMap
+    HashMap
+       LinkedHashMap
+    HashTable
