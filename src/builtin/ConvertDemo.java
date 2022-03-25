@@ -2,6 +2,7 @@ package builtin;
 
 import java.nio.charset.Charset;
 
+//常用数据类型的转换
 public class ConvertDemo {
 
     public static void main(String[] args){
@@ -18,7 +19,7 @@ public class ConvertDemo {
         System.out.println(Integer.valueOf(j));
     }
 
-    //byte[] 和 String相互转换
+    //byte[] 和 String相互转换  字符和字节的转换 需要有编码，默认编码
     public static void byteVsString(){
         byte[] by = new byte[2];
         by[0]= 'a';
@@ -30,7 +31,7 @@ public class ConvertDemo {
 //        Charset cr = new Character();
     }
 
-    //char 和 String 相互转换
+    //char[] 和 String 相互转换
     public static void charVsString(){
         char[] by = new char[5];
         by[0]= 'h';
@@ -39,8 +40,12 @@ public class ConvertDemo {
         by[3]='l';
         by[4]='o';
 
+        char ch = 'x';
+
         String j = String.valueOf(by);
         System.out.println(j);
         System.out.println(j.toCharArray());
+
+        System.out.println(String.valueOf(ch));
     }
 }
