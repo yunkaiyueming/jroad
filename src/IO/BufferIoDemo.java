@@ -1,6 +1,9 @@
 package IO;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CharsetEncoder;
 
 //字符流 只能写文件； 字节流的数据源可以是磁盘，网络等其他
 public class BufferIoDemo {
@@ -10,8 +13,12 @@ public class BufferIoDemo {
     public static void main(String[] args) throws IOException {
         //BufferedInputStreamDemo();
         //BufferedOutputStreamDemo();
+        //copyFileDemo();
+        //BufferReaderDemo();
+        //BufferWriterDemo();
 
-        copyFileDemo();
+        StreamtoReaderDemo();
+        StreamOuttoReaderDemo();
     }
 
     //类关系继承图：
@@ -72,5 +79,53 @@ public class BufferIoDemo {
 
         fin.close();
         fout.close();
+    }
+
+    //字符 输入 包装流
+    public static void BufferReaderDemo() throws IOException{
+        FileReader fr = new FileReader("./demo2.txt", Charset.forName("UTF-16LE"));
+        BufferedReader bufferedReader = new BufferedReader(fr);
+
+        String con = "",allCon = "";
+        while( (con=bufferedReader.readLine()) != null ){
+            System.out.println(con);
+            allCon+=con;
+        }
+        bufferedReader.close();
+        System.out.println("全部内容："+allCon);
+    }
+
+    //字符 输出 包装流
+    public static void BufferWriterDemo() throws IOException{
+        FileWriter fw = new FileWriter("./demo2.txt",Charset.forName("UTF-16LE"),true);
+        BufferedWriter bufferedWriter = new BufferedWriter(fw);
+
+        bufferedWriter.write("nihao类似====");
+        bufferedWriter.newLine();
+        bufferedWriter.close();
+        System.out.println("写入成功");
+    }
+
+    //输入字节流 转换到 字符流
+    public static void StreamtoReaderDemo() throws IOException{
+        FileInputStream fin =  new FileInputStream("./demo2.txt");
+        InputStreamReader in  = new InputStreamReader(fin,"UTF-16LE");
+        //new BufferedReader(new InputStreamReader(new FileInputStream("./demo2.txt")));
+        int len;
+        char[] redaData = new char[1024];
+
+        while( (len = in.read(redaData)) != -1){
+            System.out.println(new String(redaData,0 ,len));
+        }
+        in.close();
+
+    }
+
+    //输出 字节流 转换到 字符流
+    public static void StreamOuttoReaderDemo() throws IOException{
+        FileOutputStream fout =  new FileOutputStream("./demo2.txt");
+        BufferedWriter outw = new BufferedWriter(new OutputStreamWriter(fout,"UTF-16LE"));
+        outw.write("张三技术是aaaa");
+        outw.close();
     }
 }

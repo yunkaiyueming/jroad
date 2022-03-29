@@ -1,4 +1,4 @@
-package T;
+package Tai;
 
 abstract class Employee {
     private String name;
@@ -22,6 +22,7 @@ abstract class Employee {
                 + " " + this.address);
     }
 
+    @Override
     public String toString() {
         return name + " " + address + " " + number;
     }
@@ -52,6 +53,7 @@ class Salary extends Employee {
         setSalary(salary);
     }
 
+    @Override
     public void mailCheck() {
         System.out.println("Salary:");
         System.out.println("Mailing check to " + getName()
@@ -68,6 +70,7 @@ class Salary extends Employee {
         }
     }
 
+    @Override
     public double computePay() {
         System.out.println("Computing salary pay for " + getName());
         return salary / 52;
@@ -84,6 +87,7 @@ class Smell extends Employee {
         setSalary(salary);
     }
 
+    @Override
     public void mailCheck() {
         System.out.println("Smell:");
         System.out.println("Mailing check to " + getName()
@@ -100,6 +104,7 @@ class Smell extends Employee {
         }
     }
 
+    @Override
     public double computePay() {
         System.out.println("Computing salary pay for " + getName());
         return salary / 52;

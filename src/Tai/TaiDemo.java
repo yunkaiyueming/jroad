@@ -1,4 +1,4 @@
-package T;
+package Tai;
 
 // 动物类
 class Animal {
@@ -28,6 +28,9 @@ class Animal {
 
     public void eat() {
         System.out.println("我不知道吃什么");
+    }
+
+    public void say() {
     }
 }
 
