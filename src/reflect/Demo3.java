@@ -34,9 +34,7 @@ public class Demo3 {
     }
 
     /**
-     * 测试属性类型
-     *
-     * @throws NoSuchFieldException
+     * 通过反射获取类的成员变量信息
      */
     public void testFieldType() throws NoSuchFieldException {
         Field field = Demo3.class.getDeclaredField("objectMap");//objectMap属性

@@ -1,6 +1,6 @@
 package Tai;
 
-class Animal4<T>{
+class Animal4<T> {
     public T t;
 
     public Animal4(T t){
